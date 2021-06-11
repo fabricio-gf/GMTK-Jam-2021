@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
+    public static RoundManager instance;
+    
     //PROPERTIES
     //time
     [SerializeField] private float startingTime;
@@ -40,6 +42,20 @@ public class RoundManager : MonoBehaviour
     public delegate void OnResume();
     public OnResume _onResume;
 
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         StartRound();
@@ -72,6 +88,11 @@ public class RoundManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(remainingTime % 60);
         
         timeText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    public void PickupStick()
+    {
+        currentSticksCount++;
     }
 
     void TogglePause()
