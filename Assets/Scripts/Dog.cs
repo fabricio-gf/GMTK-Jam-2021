@@ -17,6 +17,10 @@ public class Dog : MonoBehaviour
         }
     }
 
+    public float distractionForce = 400.0f;
+
+    private Rigidbody rb;
+
     [SerializeField]
     private Transform rotationPivotTransform;
 
@@ -32,6 +36,10 @@ public class Dog : MonoBehaviour
     // TODO
     // public GameObject player;
     // public float distanceFromPlayer;
+
+    private void Awake() {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void FocusNewTarget() {
         if (Target == null) {
@@ -49,6 +57,9 @@ public class Dog : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (Target != null) {
+            rb.AddForce(transform.forward * Target.weight * distractionForce, ForceMode.Force);
+        }
         // TODO apply force to player based on distraction weight
     }
 
