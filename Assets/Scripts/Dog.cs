@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dog : MonoBehaviour
-{
+public class Dog : MonoBehaviour {
     // TODO possibly use a priority queue to allow backup distractions
     private Distraction _target;
     private Transform targetTransform;
@@ -33,10 +32,6 @@ public class Dog : MonoBehaviour
     public float flatAnimTimeMultiplier = 2.5f;
     private float time = 0.0f;
 
-    // TODO
-    // public GameObject player;
-    // public float distanceFromPlayer;
-
     private void Awake() {
         rb = GetComponent<Rigidbody>();
     }
@@ -46,7 +41,6 @@ public class Dog : MonoBehaviour
             // TODO idle movement
         } else {
             Target.currentDogs++;
-            // TODO rotate around player to focus new target
         }
     }
 
@@ -60,7 +54,6 @@ public class Dog : MonoBehaviour
         if (Target != null) {
             rb.AddForce(transform.forward * Target.weight * distractionForce, ForceMode.Force);
         }
-        // TODO apply force to player based on distraction weight
     }
 
     private void Update() {
