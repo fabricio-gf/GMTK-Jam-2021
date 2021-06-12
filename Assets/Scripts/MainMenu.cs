@@ -6,10 +6,21 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public string mainLevelName;
-    
-    public void LoadMainLevel()
+    public GameObject mainMenuCanvas;
+
+    public void StartRound()
     {
-        SceneManager.LoadScene(mainLevelName);
+        RoundManager.instance.StartRound();
+        mainMenuCanvas.SetActive(false);
+    }
+
+    public void ToggleCredits()
+    {
+        
+    }
+
+    public void ToggleInstructions()
+    {
+        
     }
 }

@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class RoundManager : MonoBehaviour
 {
@@ -11,33 +14,37 @@ public class RoundManager : MonoBehaviour
     
     //PROPERTIES
     //time
+    [Header("Time properties")]
     [SerializeField] private float startingTime;
     private float remainingTime;
     private bool canCountDown = false;
     public TextMeshProUGUI timeText;
     
-    public TextMeshProUGUI timeCountText;
+    public TextMeshProUGUI timeScoreText;
     
-    
+    [Header("Dog properties")]
     //dogs count
     [SerializeField] private int startingDogsCount;
     private int currentDogsCount;
-    public TextMeshProUGUI dogsCountText;
-    
+    public TextMeshProUGUI dogsScoreText;
 
+    [Header("Items properties")]
     //treats and snacks
-    [SerializeField] private int currentTreatsCount;
+    public int startingTreatsCount;
+    private int currentTreatsCount;
     public TextMeshProUGUI treatsCountText;
-    [SerializeField] private int currentSticksCount;
-    public TextMeshProUGUI sticksCountText;
+    [Space(5)]
+    public int startingSticksCount;
+    private int currentSticksCount;
 
-    public TextMeshProUGUI itemsCountText;
+    public TextMeshProUGUI itemsScoreText;
 
-    public TextMeshProUGUI totalCountText;
+    public TextMeshProUGUI totalScoreText;
 
     //pause
     private bool isPaused;
     
+    [Header("End screen/score properties")]
     //end screen/scores
     public GameObject endScreen;
     private bool isShowingScores;
@@ -49,7 +56,23 @@ public class RoundManager : MonoBehaviour
     private float playerRaisingDogsScore;
     private int playerItemScore;
     private float playerRaisingItemScore;
-    private float raisingScoreRate = 0.08f;
+    public float raisingScoreRate = 0.08f;
+    
+    //canvases
+    [Header("Canvases")]
+    public GameObject gameCanvas;
+    public GameObject pauseCanvas;
+    
+    [Header("Other properties")]
+    [Space(20)]
+    //other properties
+    private bool isReplaying = false;
+
+    public GameObject player;
+    public Transform playerInitialPosition;
+    public Transform cameraOverheadPosition;
+    public List<Transform> possibleDogsPositions;
+    public GameObject dogPrefab;
 
     //DELEGATES
     public delegate void OnRoundStart();
@@ -78,19 +101,41 @@ public class RoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    #region ROUND METHODS - ROUND START, UPDATE, ROUND END
+    public void StartRound()
     {
-        StartRound();
-    }
+        print("Starting Round");
 
-    void StartRound()
-    {
+        if (isReplaying)
+        {
+            isReplaying = false;
+            //TODO RANDOMIZE SIZES AND COLORS
+        }
+        else
+        {
+            //TODO pivot camera to overhead view
+        }
+        
+        player.transform.position = playerInitialPosition.transform.position;
+        var usableDogsPositions = possibleDogsPositions.OrderBy(x => Random.value).Take(5);
+        GameObject newDog;
+        foreach (var pos in usableDogsPositions)
+        {
+            print("SPAWNING DOGGO");
+            newDog = Instantiate(dogPrefab, pos.transform.position, Quaternion.identity, null);
+            newDog.GetComponent<SpringJoint>().connectedBody = player.GetComponentInChildren<Rigidbody>();
+        }
+        
+        endScreen.SetActive(false);
+
         currentDogsCount = startingDogsCount;
-        currentSticksCount = 2; //temp
-        currentTreatsCount = 3; //temp
+        currentSticksCount = startingSticksCount;
+        currentTreatsCount = startingTreatsCount;
         
         remainingTime = startingTime;
         canCountDown = true;
+        
+        gameCanvas.SetActive(true);
         _onRoundStart?.Invoke();
     }
 
@@ -125,63 +170,117 @@ public class RoundManager : MonoBehaviour
         
         timeText.text = $"{minutes:00}:{seconds:00}";
     }
-
-    public void PickupStick()
-    {
-        currentSticksCount++;
-    }
-
-    void TogglePause()
-    {
-        if (isPaused)
-        {
-            _onPause?.Invoke();
-            
-        }
-        else
-        {
-            _onResume?.Invoke();
-            
-        }
-
-        isPaused = !isPaused;
-    }
-
+    
     public void RoundEndTest()
     {
+        print("Calling RoundEnd! (this is a test)");
         RoundEnd();
     }
 
     void RoundEnd()
     {
+        print("Round Ended!");
         canCountDown = false;
         _onRoundEnd?.Invoke();
         ShowScore();
     }
+    #endregion
 
+    #region GAME METHODS - STICKS AND TREATS
+    public void PickupStick()
+    {
+        print("Got a stick!");
+        
+        currentSticksCount++;
+    }
+
+    public void UseStick()
+    {
+        print("Using a stick!");
+        if (currentSticksCount > 0)
+        {
+            currentSticksCount--;
+        }
+        else
+        {
+            print("ERROR: No more sticks!");
+        }
+    }
+
+    public void UseTreat()
+    {
+        print("Using a treat!");
+        if (currentTreatsCount > 0)
+        {
+            currentTreatsCount--;
+            UpdateTreatsText();
+        }
+        else
+        {
+            print("ERROR: No more treats!");
+        }
+    }
+
+    public void UpdateTreatsText()
+    {
+        treatsCountText.text = currentTreatsCount.ToString();
+    }
+    #endregion
+
+    #region PAUSE METHODS
+    void TogglePause()
+    {
+        print("Toggled pause: " + !isPaused);
+        if (isPaused)
+        {
+            pauseCanvas.SetActive(true);
+            _onPause?.Invoke();
+            Time.timeScale = 0;
+        }
+        else
+        {
+            pauseCanvas.SetActive(false);
+            _onResume?.Invoke();
+            Time.timeScale = 1;
+        }
+
+        isPaused = !isPaused;
+    }
+    #endregion
+
+    #region SCORE METHODS - SHOW AND UPDATE SCORES
     void ShowScore()
     {
+        print("Showing Score");
         endScreen.SetActive(true);
         
-        playerTotalScore = 0;
-        playerDogsScore = 0;
-        playerItemScore = 0;
-        playerTimeScore = 0;
-
+        //resetting final scores before calculations
+        playerTotalScore = playerDogsScore =  playerItemScore = playerTimeScore = 0;
+        playerRaisingTotalScore = playerRaisingDogsScore = playerRaisingItemScore = playerRaisingTimeScore = 0f;
+        
+        //score calculations
         playerDogsScore = currentDogsCount * 20;
         playerItemScore = currentSticksCount * 10 + currentTreatsCount * 10;
         playerTimeScore = (int)(100f * (remainingTime / startingTime));
         playerTotalScore = playerTimeScore + playerDogsScore + playerItemScore;
 
+        //setting base score values for the texts
+        dogsScoreText.text = "0";
+        itemsScoreText.text = "0";
+        timeScoreText.text = "0";
+        totalScoreText.text = "0";
+        
+        print("Player scores - Dogs: " + playerDogsScore + " - Items: " + playerItemScore + " - Time: " + playerTimeScore + " - Total: " + playerTotalScore);
+
         isShowingScores = true;
     }
-    
+
     void RaiseDogsScore()
     {
         if (playerRaisingDogsScore < playerDogsScore)
         {
             playerRaisingDogsScore += raisingScoreRate;
-            dogsCountText.text = ((int)playerRaisingDogsScore).ToString();
+            dogsScoreText.text = ((int)playerRaisingDogsScore).ToString();
         }
     }
 
@@ -190,7 +289,7 @@ public class RoundManager : MonoBehaviour
         if (playerRaisingItemScore < playerItemScore)
         {
             playerRaisingItemScore += raisingScoreRate;
-            itemsCountText.text = ((int)playerRaisingItemScore).ToString();
+            itemsScoreText.text = ((int)playerRaisingItemScore).ToString();
         }
     }
 
@@ -199,7 +298,7 @@ public class RoundManager : MonoBehaviour
         if (playerRaisingTimeScore < playerTimeScore)
         {
             playerRaisingTimeScore += raisingScoreRate;
-            timeCountText.text = ((int)playerRaisingTimeScore).ToString();
+            timeScoreText.text = ((int)playerRaisingTimeScore).ToString();
         }
     }
 
@@ -208,7 +307,29 @@ public class RoundManager : MonoBehaviour
         if (playerRaisingTotalScore < playerTotalScore)
         {
             playerRaisingTotalScore += raisingScoreRate;
-            totalCountText.text = ((int)playerRaisingTotalScore).ToString();
+            totalScoreText.text = ((int)playerRaisingTotalScore).ToString();
         }
     }
+    #endregion
+    
+    #region SCENE METHODS - RESTART, MENU AND QUIT
+    public void RestartGame()
+    {
+        print("Restarting Game");
+        isReplaying = true;
+        StartRound();
+    }
+
+    public void BackToMenu()
+    {
+        print("Going back to menu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Quit()
+    {
+        print("Quitting");
+        Application.Quit();
+    }
+    #endregion
 }
