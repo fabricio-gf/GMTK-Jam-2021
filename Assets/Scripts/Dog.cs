@@ -6,11 +6,13 @@ public class Dog : MonoBehaviour
 {
     // TODO possibly use a priority queue to allow backup distractions
     private Distraction _target;
+    private Transform targetTransform;
     public Distraction Target {
         get { return _target; }
         set {
             ReduceTargetDogCount();
             _target = value;
+            targetTransform = _target?.transform;
             FocusNewTarget();
         }
     }
@@ -58,10 +60,12 @@ public class Dog : MonoBehaviour
         time += dt * Time.deltaTime;
 
         rotationPivotTransform.localPosition = 0.25f * Vector3.up * bounceLoop.Evaluate(time);
-        rotationPivotTransform.localRotation = Quaternion.Euler(20 * (leftRightTiltLoop.Evaluate(time / 2) - 0.5f), 0, 0);
+        rotationPivotTransform.localRotation = Quaternion.Euler(0, 0, 20 * (leftRightTiltLoop.Evaluate(time / 2) - 0.5f));
 
-        // var scaledTime = Time.time * 2.5f;
-        // rotationPivotTransform.position = 0.25f * Vector3.up * bounceLoop.Evaluate(scaledTime);
-        // rotationPivotTransform.rotation = Quaternion.Euler(20 * (leftRightTiltLoop.Evaluate(scaledTime / 2) - 0.5f), 0, 0);
+        if (Target != null) {
+            var dir = targetTransform.position - transform.position;
+            var rot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, rot, 0);
+        }
     }
 }
