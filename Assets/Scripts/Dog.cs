@@ -17,8 +17,11 @@ public class Dog : MonoBehaviour {
     }
 
     public float distractionForce;
+    public float flatAnimTimeMultiplier = 2.5f;
 
     private Rigidbody rb;
+    private Transform playerTransform;
+    private new Transform transform;
 
     [SerializeField]
     private Transform rotationPivotTransform;
@@ -29,12 +32,16 @@ public class Dog : MonoBehaviour {
     [SerializeField]
     private AnimationCurve leftRightTiltLoop;
 
-    public float flatAnimTimeMultiplier = 2.5f;
     private float time;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         time = Random.value;
+        transform = GetComponent<Transform>();
+    }
+
+    private void Start() {
+        playerTransform = GetComponent<SpringJoint>().connectedBody.transform;
     }
 
     private void FocusNewTarget() {
@@ -67,10 +74,14 @@ public class Dog : MonoBehaviour {
         rotationPivotTransform.localPosition = 0.25f * Vector3.up * bounceLoop.Evaluate(time);
         rotationPivotTransform.localRotation = Quaternion.Euler(0, 0, 20 * (leftRightTiltLoop.Evaluate(time / 2) - 0.5f));
 
-        if (Target != null) {
-            var dir = targetTransform.position - transform.position;
-            var rot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, rot, 0);
+        Transform lookTarget;
+        if (Target == null) {
+            lookTarget = playerTransform;
+        } else {
+            lookTarget = targetTransform;
         }
+        var lookDir = lookTarget.position - transform.position;
+        var rot = Mathf.Atan2(lookDir.x, lookDir.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, rot, 0);
     }
 }

@@ -10,6 +10,10 @@ public class Distraction : MonoBehaviour
     [Range(0.1f, 5.0f)]
     public float weight = 1.0f;
 
+    [Tooltip("Probability this will attract a dog when it enters its area.")]
+    [Range(0.0f, 1.0f)]
+    public float attractProbability = 1.0f;
+
     [Tooltip("Max number of dogs this distraction can hold; 0 for no limit.")]
     public int maxDogs = 0;
 
@@ -31,6 +35,11 @@ public class Distraction : MonoBehaviour
         var prevDistractionWeight = newDog.Target?.weight ?? 0;
         if (prevDistractionWeight > weight) {
             // Previous distraction was more interesting
+            return;
+        }
+
+        if (Random.value >= attractProbability) {
+            // Randomly decided not to attract this dog
             return;
         }
 
@@ -61,7 +70,7 @@ public class Distraction : MonoBehaviour
         }
         if (currentDogs < 0) {
             var pos = transform.position;
-            Debug.Log($"Distraction \"{gameObject.name}\" has negative dogs ({pos.x}, {pos.y}, {pos.z}).");
+            Debug.LogError($"Distraction \"{gameObject.name}\" has negative dogs ({pos.x}, {pos.y}, {pos.z}).");
         }
     }
 }
