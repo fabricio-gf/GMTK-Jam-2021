@@ -43,7 +43,6 @@ class Inventory : MonoBehaviour
         if (_pickupQuantity[PickupType.Treat] == 0)
             return;
 
-        // TODO: Call dogs to player
         Instantiate(treatGO, transform);
 
         _pickupQuantity[PickupType.Treat]--;
@@ -54,8 +53,7 @@ class Inventory : MonoBehaviour
         if (_pickupQuantity[PickupType.Stick] == 0)
             return;
 
-        // TODO: Throw Stick at Mouse Direction or Initialize Throw
-        Instantiate(stickGO, transform);
+        Instantiate(stickGO, transform).GetComponent<ThrowableStick>().BeginThrow();
 
         _pickupQuantity[PickupType.Stick]--;
     }

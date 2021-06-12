@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 7328118064777052646}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: PlayerArmature
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1112,8 +1112,6 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   sprint: 0
   analogMovement: 0
-  cursorLocked: 1
-  cursorInputForLook: 1
 --- !u!114 &4416926081852918493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,8 +1224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTreat: 3
   maxStick: 1
+  initTreat: 3
+  initStick: 0
   treatGO: {fileID: 7438090070283608281, guid: c5756c54903e7e54fb654862069f5149, type: 3}
-  stickGO: {fileID: 0}
+  stickGO: {fileID: 7302492744016143647, guid: ebe671cc7fbe3654d88abdbdce26d88a, type: 3}
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
