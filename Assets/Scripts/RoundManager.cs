@@ -76,7 +76,7 @@ public class RoundManager : MonoBehaviour
     public Transform playerInitialPosition;
     public CinemachineVirtualCamera frontCamera;
     public List<Transform> possibleDogsPositions;
-    public GameObject dogPrefab;
+    public GameObject[] dogPrefabs;
     public List<GameObject> dogsList;
 
     //DELEGATES
@@ -153,7 +153,7 @@ public class RoundManager : MonoBehaviour
         foreach (var pos in usableDogsPositions)
         {
             print("SPAWNING DOGGO");
-            var newDog = Instantiate(dogPrefab, pos.transform.position, Quaternion.identity, null);
+            var newDog = Instantiate(dogPrefabs[Random.Range(0,dogPrefabs.Length)], pos.transform.position, Quaternion.identity, null);
             newDog.GetComponent<SpringJoint>().connectedBody = player.GetComponentInChildren<Rigidbody>();
             //TODO RANDOMIZE SIZES AND COLORS
             dogsList.Add(newDog);
