@@ -56,7 +56,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4680638018691401952}
-  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -67,7 +67,7 @@ Transform:
   - {fileID: 4680638019035386573}
   m_Father: {fileID: 4707191479318350528}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &4680638018691405597
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 4680638020111893091}
   - component: {fileID: 4680638020111893088}
   - component: {fileID: 4680638020111893149}
+  - component: {fileID: 4698189006704860433}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -469,7 +470,7 @@ Transform:
   m_GameObject: {fileID: 4680638020111893089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4707191479318350528}
   m_Father: {fileID: 0}
@@ -487,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c096d46f08c4054492b5dea71c35859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distractionForce: 200
   rotationPivotTransform: {fileID: 4707191479318350528}
   bounceLoop:
     serializedVersion: 2
@@ -536,6 +538,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
+  flatAnimTimeMultiplier: 2.5
 --- !u!54 &4680638020111893088
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -563,8 +566,32 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 1.1, y: 1.3, z: 2}
   m_Center: {x: 0, y: -0, z: 0}
+--- !u!145 &4698189006704860433
+SpringJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4680638020111893089}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Spring: 10000
+  m_Damper: 2
+  m_MinDistance: 0.1
+  m_MaxDistance: 3
+  m_Tolerance: 0.025
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &4680638020291006522
 GameObject:
   m_ObjectHideFlags: 0
