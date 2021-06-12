@@ -16,7 +16,7 @@ public class Dog : MonoBehaviour {
         }
     }
 
-    public float distractionForce = 400.0f;
+    public float distractionForce;
 
     private Rigidbody rb;
 
@@ -30,10 +30,11 @@ public class Dog : MonoBehaviour {
     private AnimationCurve leftRightTiltLoop;
 
     public float flatAnimTimeMultiplier = 2.5f;
-    private float time = 0.0f;
+    private float time;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        time = Random.value;
     }
 
     private void FocusNewTarget() {
