@@ -14,7 +14,7 @@ public class KillZone : MonoBehaviour
         Destroy(other.gameObject);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, transform.rotation*GetComponent<BoxCollider>().size);

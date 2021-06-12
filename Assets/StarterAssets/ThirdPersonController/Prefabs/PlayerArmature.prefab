@@ -1006,6 +1006,7 @@ GameObject:
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 7328118064777052646}
+  - component: {fileID: 1619766795769409222}
   m_Layer: 3
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1119,7 +1120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4416926081852918481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -1228,6 +1229,18 @@ MonoBehaviour:
   initStick: 0
   treatGO: {fileID: 7438090070283608281, guid: c5756c54903e7e54fb654862069f5149, type: 3}
   stickGO: {fileID: 7302492744016143647, guid: ebe671cc7fbe3654d88abdbdce26d88a, type: 3}
+--- !u!114 &1619766795769409222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137719ee44f656944a2811ea9ef3a81c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,11 +16,14 @@ public class Dog : MonoBehaviour {
         }
     }
 
+    public Transform leashAttachmentPoint;
+
     public float distractionForce;
     public float flatAnimTimeMultiplier = 2.5f;
 
     private Rigidbody rb;
     private Transform playerTransform;
+    private Transform playerHipTransform;
     private new Transform transform;
 
     [SerializeField]
@@ -32,16 +35,20 @@ public class Dog : MonoBehaviour {
     [SerializeField]
     private AnimationCurve leftRightTiltLoop;
 
+    private LineRenderer leashRenderer;
+
     private float time;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         time = Random.value;
         transform = GetComponent<Transform>();
+        leashRenderer = GetComponent<LineRenderer>();
     }
 
     private void Start() {
         playerTransform = GetComponent<SpringJoint>().connectedBody.transform;
+        playerHipTransform = playerTransform.Find("Skeleton").Find("Hips");
     }
 
     private void FocusNewTarget() {
@@ -60,7 +67,7 @@ public class Dog : MonoBehaviour {
 
     private void FixedUpdate() {
         if (Target != null) {
-            rb.AddForce(transform.forward * Target.weight * distractionForce, ForceMode.Force);
+            rb.AddForce(transform.forward * (Target.weight * distractionForce), ForceMode.Force);
         }
     }
 
@@ -71,7 +78,7 @@ public class Dog : MonoBehaviour {
         }
         time += dt * Time.deltaTime;
 
-        rotationPivotTransform.localPosition = 0.25f * Vector3.up * bounceLoop.Evaluate(time);
+        rotationPivotTransform.localPosition = Vector3.up * (0.25f * bounceLoop.Evaluate(time));
         rotationPivotTransform.localRotation = Quaternion.Euler(0, 0, 20 * (leftRightTiltLoop.Evaluate(time / 2) - 0.5f));
 
         Transform lookTarget;
@@ -83,5 +90,9 @@ public class Dog : MonoBehaviour {
         var lookDir = lookTarget.position - transform.position;
         var rot = Mathf.Atan2(lookDir.x, lookDir.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, rot, 0);
+    }
+
+    private void LateUpdate() {
+        leashRenderer.SetPositions(new Vector3[] {leashAttachmentPoint.position, playerHipTransform.position});
     }
 }
