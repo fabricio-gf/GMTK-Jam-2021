@@ -14,8 +14,8 @@ TagManager:
   - UI
   - Ground
   - Ignore Player Collision
-  - 
-  - 
+  - Ignore Player and Dog
+  - Dog
   - 
   - 
   - 
