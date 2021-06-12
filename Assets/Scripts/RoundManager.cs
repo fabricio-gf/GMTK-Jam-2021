@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,7 +20,6 @@ public class RoundManager : MonoBehaviour
     private float remainingTime;
     private bool canCountDown = false;
     public TextMeshProUGUI timeText;
-    
     public TextMeshProUGUI timeScoreText;
     
     [Header("Dog properties")]
@@ -36,10 +36,13 @@ public class RoundManager : MonoBehaviour
     [Space(5)]
     public int startingSticksCount;
     private int currentSticksCount;
-
+    [Space(5)]
+    public Image stickIcon;
+    public Image stickIconInner;
+    public Color colorUsable;
+    public Color colorUnusable;
+    [Space(5)]
     public TextMeshProUGUI itemsScoreText;
-
-    public TextMeshProUGUI totalScoreText;
 
     //pause
     private bool isPaused;
@@ -68,11 +71,13 @@ public class RoundManager : MonoBehaviour
     //other properties
     private bool isReplaying = false;
 
+    public TextMeshProUGUI totalScoreText;
     public GameObject player;
     public Transform playerInitialPosition;
-    public Transform cameraOverheadPosition;
+    public CinemachineVirtualCamera frontCamera;
     public List<Transform> possibleDogsPositions;
     public GameObject dogPrefab;
+    public List<GameObject> dogsList;
 
     //DELEGATES
     public delegate void OnRoundStart();
@@ -101,31 +106,34 @@ public class RoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    #region ROUND METHODS - ROUND START, UPDATE, ROUND END
+    #region ROUND METHODS - ROUND START, SPAWN DOGS, UPDATE, ROUND END
+
+    private void Start()
+    {
+        SpawnDogs();
+    }
+
     public void StartRound()
     {
         print("Starting Round");
 
+        player.transform.position = playerInitialPosition.transform.position;
+        
         if (isReplaying)
         {
+            foreach (var d in dogsList)
+            {
+                Destroy(d);
+            }
+            dogsList.Clear();
+            SpawnDogs();
             isReplaying = false;
-            //TODO RANDOMIZE SIZES AND COLORS
         }
         else
         {
-            //TODO pivot camera to overhead view
+            frontCamera.Priority = 9;
         }
-        
-        player.transform.position = playerInitialPosition.transform.position;
-        var usableDogsPositions = possibleDogsPositions.OrderBy(x => Random.value).Take(5);
-        GameObject newDog;
-        foreach (var pos in usableDogsPositions)
-        {
-            print("SPAWNING DOGGO");
-            newDog = Instantiate(dogPrefab, pos.transform.position, Quaternion.identity, null);
-            newDog.GetComponent<SpringJoint>().connectedBody = player.GetComponentInChildren<Rigidbody>();
-        }
-        
+
         endScreen.SetActive(false);
 
         currentDogsCount = startingDogsCount;
@@ -137,6 +145,19 @@ public class RoundManager : MonoBehaviour
         
         gameCanvas.SetActive(true);
         _onRoundStart?.Invoke();
+    }
+
+    private void SpawnDogs()
+    {
+        var usableDogsPositions = possibleDogsPositions.OrderBy(x => Random.value).Take(5);
+        foreach (var pos in usableDogsPositions)
+        {
+            print("SPAWNING DOGGO");
+            var newDog = Instantiate(dogPrefab, pos.transform.position, Quaternion.identity, null);
+            newDog.GetComponent<SpringJoint>().connectedBody = player.GetComponentInChildren<Rigidbody>();
+            //TODO RANDOMIZE SIZES AND COLORS
+            dogsList.Add(newDog);
+        }
     }
 
     private void Update()
@@ -192,6 +213,8 @@ public class RoundManager : MonoBehaviour
         print("Got a stick!");
         
         currentSticksCount++;
+        stickIcon.color = colorUsable;
+        stickIconInner.color = colorUsable;
     }
 
     public void UseStick()
@@ -200,6 +223,8 @@ public class RoundManager : MonoBehaviour
         if (currentSticksCount > 0)
         {
             currentSticksCount--;
+            stickIcon.color = colorUnusable;
+            stickIconInner.color = colorUnusable;
         }
         else
         {
