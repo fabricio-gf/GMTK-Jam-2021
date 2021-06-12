@@ -55,7 +55,7 @@ public class Distraction : MonoBehaviour
     }
 
     private void LateUpdate() {
-        if (currentDogs > maxDogs) {
+        if (maxDogs > 0 && currentDogs > maxDogs) {
             var pos = transform.position;
             Debug.LogError($"Distraction \"{gameObject.name}\" has more dogs than it supports: {currentDogs} > {maxDogs} ({pos.x}, {pos.y}, {pos.z}).");
         }
