@@ -3,8 +3,15 @@ using UnityEngine;
 
 class Inventory : MonoBehaviour
 {
+    [Header("Item Quantities")]
     [SerializeField] private uint maxTreat = 3;
     [SerializeField] private uint maxStick = 1;
+    [SerializeField] private uint initTreat = 3;
+    [SerializeField] private uint initStick = 0;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject treatGO;
+    [SerializeField] private GameObject stickGO;
 
     private Dictionary<PickupType, uint> _pickupQuantity = new Dictionary<PickupType, uint>();
     private Dictionary<PickupType, uint> _maxPickupQuantity = new Dictionary<PickupType, uint>();
@@ -14,8 +21,8 @@ class Inventory : MonoBehaviour
         _maxPickupQuantity[PickupType.Treat] = maxTreat;
         _maxPickupQuantity[PickupType.Stick] = maxStick;
 
-        _pickupQuantity[PickupType.Treat] = 0;
-        _pickupQuantity[PickupType.Stick] = 0;
+        _pickupQuantity[PickupType.Treat] = initTreat;
+        _pickupQuantity[PickupType.Stick] = initStick;
     }
 
     public bool Add(PickupType item)
@@ -37,6 +44,7 @@ class Inventory : MonoBehaviour
             return;
 
         // TODO: Call dogs to player
+        Instantiate(treatGO, transform);
 
         _pickupQuantity[PickupType.Treat]--;
     }
@@ -47,6 +55,7 @@ class Inventory : MonoBehaviour
             return;
 
         // TODO: Throw Stick at Mouse Direction or Initialize Throw
+        Instantiate(stickGO, transform);
 
         _pickupQuantity[PickupType.Stick]--;
     }
