@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7302492744016143647, guid: ebe671cc7fbe3654d88abdbdce26d88a, type: 3}
   lineRenderer: {fileID: 7505284944472481938}
-  arrowLength: 5
+  arrowLength: 2
 --- !u!114 &1494940517599578258
 MonoBehaviour:
   m_ObjectHideFlags: 0

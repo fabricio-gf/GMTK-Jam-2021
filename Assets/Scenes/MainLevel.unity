@@ -9529,7 +9529,6 @@ MonoBehaviour:
   - {fileID: 4029249611580808845, guid: 082a49c6eebee9348b60dd2c02b07276, type: 3}
   - {fileID: 2101081824819981446, guid: da0b6ee256d1fae4abbee3f471b648fb, type: 3}
   - {fileID: 3279850322477622685, guid: 030d816b452636b41a216e943ca20c46, type: 3}
-  dogsList: []
 --- !u!4 &778784659
 Transform:
   m_ObjectHideFlags: 0
