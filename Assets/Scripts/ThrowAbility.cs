@@ -34,7 +34,6 @@ public class ThrowAbility : MonoBehaviour
     }
     private void BeginThrow()
     {
-        Debug.Log("Begin");
         if (!_isThrowing && _inventory.hasItem(PickupType.Stick))
         {
             _isThrowing = true;
@@ -61,9 +60,6 @@ public class ThrowAbility : MonoBehaviour
             Throw(throwDirection.normalized);
 
             _inventory.UseItem(PickupType.Stick);
-
-            Debug.Log($"Thrown at {throwDirection.normalized}");
-                
         }
     }
 
