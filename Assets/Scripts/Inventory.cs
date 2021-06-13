@@ -5,10 +5,10 @@ using UnityEngine;
 class Inventory : MonoBehaviour
 {
     [Header("Item Quantities")]
-    [SerializeField] private uint maxTreat = 3;
-    [SerializeField] private uint maxStick = 1;
-    [SerializeField] private uint initTreat = 3;
-    [SerializeField] private uint initStick = 0;
+    [SerializeField] private int maxTreat = 3;
+    [SerializeField] private int maxStick = 1;
+    [SerializeField] private int initTreat = 3;
+    [SerializeField] private int initStick = 0;
 
     [Header("Items SO")]
     [SerializeField] private IntVariable stickQuantity;
@@ -18,11 +18,11 @@ class Inventory : MonoBehaviour
 
     private void Start()
     {
-        _maxPickupQuantity[PickupType.Treat] = (int)maxTreat;
-        _maxPickupQuantity[PickupType.Stick] = (int)maxStick;
+        _maxPickupQuantity[PickupType.Treat] = maxTreat;
+        _maxPickupQuantity[PickupType.Stick] = maxStick;
 
-        treatQuantity.Value = (int)initTreat;
-        stickQuantity.Value = (int)initStick;
+        treatQuantity.Value = initTreat;
+        stickQuantity.Value = initStick;
     }
 
     public bool Add(PickupType item)
