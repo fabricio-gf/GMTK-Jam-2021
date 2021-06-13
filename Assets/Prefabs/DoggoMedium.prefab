@@ -171,6 +171,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1714358018433681818, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714358018433681818, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714358018433681818, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.729
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714358018433681818, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887227665690567718, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216790580138462739, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4680638020111893089, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
       propertyPath: m_Name
       value: DoggoMedium
@@ -242,6 +266,18 @@ PrefabInstance:
     - target: {fileID: 4707191479318350528, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182579215439424168, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538056012592152733, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112239756539208158, guid: 63196557fedc3a441bc04158c11061d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63196557fedc3a441bc04158c11061d1, type: 3}

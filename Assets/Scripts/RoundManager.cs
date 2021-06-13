@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Cinemachine;
 using TMPro;
@@ -49,7 +50,12 @@ public class RoundManager : MonoBehaviour
     [Header("End screen/score properties")]
     //end screen/scores
     public GameObject endScreen;
-    private bool isShowingScores;
+    private bool isShowingScores = false;
+    private bool isShowingTimeScore = false;
+    private bool isShowingDogsScore = false;
+    private bool isShowingItemsScore = false;
+    private bool isShowingTotalScore = false;
+
     private int playerTotalScore;
     private float playerRaisingTotalScore;
     private int playerTimeScore;
@@ -59,6 +65,8 @@ public class RoundManager : MonoBehaviour
     private int playerItemScore;
     private float playerRaisingItemScore;
     public float raisingScoreRate = 0.08f;
+
+    public TextMeshProUGUI punResultText;
     
     //canvases
     [Header("Canvases")]
@@ -174,13 +182,25 @@ public class RoundManager : MonoBehaviour
 
         if (isShowingScores)
         {
-            RaiseDogsScore();
-
-            RaiseItemScore();            
+            if (isShowingTimeScore)
+            {
+                RaiseTimeScore();
+            }
             
-            RaiseTimeScore();
+            if (isShowingDogsScore)
+            {
+                RaiseDogsScore();
+            }
 
-            RaiseTotalScore();
+            if (isShowingItemsScore)
+            {
+                RaiseItemScore();
+            }
+
+            if (isShowingTotalScore)
+            {
+                RaiseTotalScore();
+            }
         }
     }
 
@@ -204,6 +224,26 @@ public class RoundManager : MonoBehaviour
         canCountDown = false;
         _onRoundEnd?.Invoke();
         ShowScore();
+    }
+
+    public void StartShowingTimeScore()
+    {
+        isShowingTimeScore = true;
+    }
+    
+    public void StartShowingDogsScore()
+    {
+        isShowingDogsScore = true;
+    }
+    
+    public void StartShowingItemsScore()
+    {
+        isShowingItemsScore = true;
+    }
+    
+    public void StartShowingTotalScore()
+    {
+        isShowingTotalScore = true;
     }
     #endregion
 
@@ -278,6 +318,19 @@ public class RoundManager : MonoBehaviour
         totalScoreText.text = "0";
         
         print("Player scores - Dogs: " + playerDogsScore + " - Items: " + playerItemScore + " - Time: " + playerTimeScore + " - Total: " + playerTotalScore);
+
+        if (playerTotalScore <= 50)
+        {
+            punResultText.text = "That's was ruff!";
+        }
+        else if (playerTotalScore <= 100)
+        {
+            punResultText.text = "Good boy!";
+        }
+        else
+        {
+            punResultText.text = "Paw-esome!!!";
+        }
 
         isShowingScores = true;
     }
