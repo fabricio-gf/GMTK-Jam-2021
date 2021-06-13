@@ -31,13 +31,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9546ae7972a41094cbdfef2f7628f409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowPush: 0.3
-  highPush: 0.7
-  stopSpeed: 0.1
-  angle: 0
+  lowSpeed: 0.3
+  highSpeed: 1.4
   input: {fileID: 7688663557877076870}
   player: {fileID: 3160903183067667413}
-  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &7733194270267205902
 GameObject:
   m_ObjectHideFlags: 0

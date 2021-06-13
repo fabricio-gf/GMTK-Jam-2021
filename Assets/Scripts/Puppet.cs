@@ -22,12 +22,12 @@ public class Puppet : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        speed = player.velocity.magnitude;
+        float speed = player.velocity.magnitude;
 
         if (input.move != Vector2.zero) {
             animator.SetBool("moving", true);
             Vector3 inputDirection = new Vector3(-input.move.x, 0.0f, -input.move.y).normalized;
-            angle = Vector3.Angle(inputDirection, player.velocity.normalized);
+            float angle = Vector3.Angle(inputDirection, player.velocity.normalized);
 
             if (angle >= 45f) {
                 animator.SetInteger("resistance", 2);
