@@ -59,8 +59,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 5
-  maxDogs: 20
+  attractProbability: 1
+  maxDogs: 4
   currentDogs: 0
+  followUpFunction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7076212071654397569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,4 +77,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f5afe41425b844cbcf0101ab6a6664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 5
+  delay: 2

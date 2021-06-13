@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ca1759137bab442905560a0ee12df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 5
+  weight: 3
   attractProbability: 1
   maxDogs: 2
   currentDogs: 0
