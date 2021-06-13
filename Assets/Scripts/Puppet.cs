@@ -12,6 +12,10 @@ public class Puppet : MonoBehaviour {
 
     public StarterAssetsInputs input;
     public Rigidbody player;
+    [Space(5)]
+
+    public GameObject treat;
+    public float dogDelay, dogDistance;
 
     private void Awake() {
         animator = this.GetComponent<Animator>();
@@ -42,8 +46,20 @@ public class Puppet : MonoBehaviour {
             }
         } else {
             animator.SetBool("moving", false);
+        } 
+    }
+
+    public void Dance() {
+        //Instantiate(treat, transform);
+        foreach(GameObject dog in RoundManager.instance.dogsList) {
+            StartCoroutine(Dance(dog));
         }
+    }
 
 
+    IEnumerator Dance(GameObject dog) {
+        float danceDelay = Random.Range(0f, 0.5f);
+        yield return new WaitForSeconds(danceDelay);
+        dog.GetComponent<Animation>().Play();
     }
 }
