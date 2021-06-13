@@ -13,4 +13,14 @@ public class MainMenu : MonoBehaviour
         RoundManager.instance.StartRound();
         mainMenuCanvas.SetActive(false);
     }
+
+    public void PlayCrunchSound()
+    {
+        AudioManager.instance.GetComponent<EffectsController>().PlayClip("crunch");
+    }
+
+    public void PlayClickSound()
+    {
+        AudioManager.instance.GetComponent<EffectsController>().PlayClip("click");
+    }
 }

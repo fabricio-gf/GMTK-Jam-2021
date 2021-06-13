@@ -31,6 +31,6 @@ public class FlyAway : MonoBehaviour
     {
         yield return new WaitForSeconds(flyAwayTime);
         hasStartedFlying = true;
-        //AudioManager.instance.GetComponent<EffectsController>().PlayClip("crow");
+        AudioManager.instance.GetComponent<EffectsController>().PlayClip("crow");
     }
 }

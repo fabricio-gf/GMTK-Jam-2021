@@ -78,5 +78,6 @@ public class ThrowAbility : MonoBehaviour
     {
         ThrowableStick stick = Instantiate(prefab, transform).GetComponent<ThrowableStick>();
         stick.Throw(direction);
+        AudioManager.instance.GetComponent<EffectsController>().PlayClip("throw");
     }
 }

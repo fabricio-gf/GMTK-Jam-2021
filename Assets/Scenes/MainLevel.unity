@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.59854764, g: 0.7036441, b: 0.8574558, a: 1}
+  m_IndirectSpecularColor: {r: 0.5985562, g: 0.70364416, b: 0.8574572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6460,7 +6460,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 484014321}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1001 &330118869
 PrefabInstance:
@@ -20976,7 +20988,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 484014321}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1248558326
 GameObject:
@@ -22570,6 +22594,18 @@ MonoBehaviour:
       - m_Target: {fileID: 484014321}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: StartRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 484014321}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayCrunchSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29960,17 +29996,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: That's ruff!
+  m_text: THAT'S RUFF!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6d0678d7ae1a3eb459bd961b97438c15, type: 2}
-  m_sharedMaterial: {fileID: 719928179557067743, guid: 6d0678d7ae1a3eb459bd961b97438c15, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 38ffeb3f430c5e94db81de3fafd8e7a7, type: 2}
+  m_sharedMaterial: {fileID: 719928179557067743, guid: 38ffeb3f430c5e94db81de3fafd8e7a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -29993,7 +30029,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 32
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -31212,20 +31248,180 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: TagList.Array.size
-      value: 1
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: ClipList.Array.size
-      value: 1
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: TagList.Array.data[0]
-      value: woof
+      value: woof1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[1]
+      value: woof2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[2]
+      value: woof3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[3]
+      value: smalldog1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[4]
+      value: smalldog2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[5]
+      value: smalldog3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[6]
+      value: smalldog4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[7]
+      value: mediumdog1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[8]
+      value: mediumdog2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[9]
+      value: largedog1
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: ClipList.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 3322d4918d59649418c7ff23308e22c2, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9897216edd424f443a5b586ac2c75670, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b482ddf643c2ca94ca5caf14a866210b, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: ca329005496247147b0542c66329035f, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0560b80ad8fa76742abe69cc04174849, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 58eadfa64dc30e94282612d27d6f2703, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 25e91044640213243b4b8dd3017fa10b, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: c3e533ee5dd702340828b9698ac0b211, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: e294a4f3f60a3dc4c8b466d3076b3ed0, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 49bdce547442823478d6ffc5812996fc, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[10]
+      value: largedog2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[11]
+      value: largedog3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[12]
+      value: monsterdog1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[13]
+      value: monsterdog2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[14]
+      value: monsterdog3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[15]
+      value: throw
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[16]
+      value: click
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[17]
+      value: crow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[18]
+      value: squirrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[19]
+      value: crunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: TagList.Array.data[20]
+      value: treat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c4291e4b1f6bf647863d24b4080f608, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: d4144d55be4af67469e763a137ce2a37, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: c3a808a8ec26688418e2cebf6da860b9, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: dce59f002c6169248ac2e0cd7e42a1ca, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[14]
+      value: 
+      objectReference: {fileID: 8300000, guid: b1cadea6d8cbbc543b4f61518ddb22b5, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[15]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b9dd03f29b5b72488cd78715d2dab38, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[16]
+      value: 
+      objectReference: {fileID: 8300000, guid: a378e6cfaa369d246b34bf4cc6e5f7f2, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[17]
+      value: 
+      objectReference: {fileID: 8300000, guid: 80db07c6fdf249844914faed107f0261, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[18]
+      value: 
+      objectReference: {fileID: 8300000, guid: f55c43c2c14ad0842b20657ea0da144b, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[19]
+      value: 
+      objectReference: {fileID: 8300000, guid: 33ae664e7e0febe4ab11684db7971160, type: 3}
+    - target: {fileID: 2332401095545210221, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: ClipList.Array.data[20]
+      value: 
+      objectReference: {fileID: 8300000, guid: dba6b980d56432b4a9bb7e89f13cffbd, type: 3}
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: FadeDuration
       value: 0

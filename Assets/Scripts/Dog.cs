@@ -86,6 +86,42 @@ public class Dog : MonoBehaviour
         else {
             Target.currentDogs++;
             noticeParticle?.Play();
+            int randomBark = 0;
+            string barkString = "";
+            double randomValue = Random.value;
+            if (randomValue <= 0.01f)
+            {
+                randomBark = Random.Range(1, 4);
+                barkString = "woof" + randomBark;
+                AudioManager.instance.GetComponent<EffectsController>().PlayClip(barkString);
+            }
+            else if(randomValue > 0.01f && randomValue <= 0.02f)
+            {
+                randomBark = Random.Range(1, 4);
+                barkString = "monsterdog" + randomBark;
+                AudioManager.instance.GetComponent<EffectsController>().PlayClip(barkString);
+            }
+            else
+            {
+                switch (size)
+                {
+                    case 1:
+                        randomBark = Random.Range(1, 5);
+                        barkString = "smalldog" + randomBark;
+                        AudioManager.instance.GetComponent<EffectsController>().PlayClip(barkString);
+                        break;
+                    case 2:
+                        randomBark = Random.Range(1, 3);
+                        barkString = "mediumdog" + randomBark;
+                        AudioManager.instance.GetComponent<EffectsController>().PlayClip(barkString);
+                        break;
+                    case 3:
+                        randomBark = Random.Range(1, 4);
+                        barkString = "largedog" + randomBark;
+                        AudioManager.instance.GetComponent<EffectsController>().PlayClip(barkString);
+                        break;
+                }
+            }
         }
     }
 

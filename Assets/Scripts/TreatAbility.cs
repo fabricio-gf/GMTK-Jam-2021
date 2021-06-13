@@ -31,5 +31,6 @@ public class TreatAbility : MonoBehaviour
             Instantiate(prefab, transform);
             _inventory.UseItem(PickupType.Treat);
         }
+        AudioManager.instance.GetComponent<EffectsController>().PlayClip("treat");
     }
 }
