@@ -10329,7 +10329,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -400}
-  m_SizeDelta: {x: 400, y: 325}
+  m_SizeDelta: {x: 400, y: 450}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &561338775
 MonoBehaviour:
@@ -15915,7 +15915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &945730542
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15931,11 +15931,11 @@ RectTransform:
   m_Father: {fileID: 561338774}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -196}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 300, y: 100}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &945730543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15979,7 +15979,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 945730544}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 778784658}
+        m_TargetAssemblyTypeName: RoundManager, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &945730544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16000,8 +16012,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 3821335565340405994, guid: 12620db827bc15c41b119ad8e62dc0b4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -29815,8 +29827,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -30926,7 +30938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: LoopDuration
-      value: 1.56
+      value: 94.545
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: BlendDuration
@@ -30935,7 +30947,7 @@ PrefabInstance:
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: InitialMusicTrack
       value: 
-      objectReference: {fileID: 8300000, guid: 3322d4918d59649418c7ff23308e22c2, type: 3}
+      objectReference: {fileID: 8300000, guid: 2171db7fce166114baf6d361790d2c14, type: 3}
     - target: {fileID: 2332401095545210223, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: m_Name
       value: '@AudioManager'
