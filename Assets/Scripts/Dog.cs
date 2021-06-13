@@ -9,6 +9,7 @@ public class Dog : MonoBehaviour
     {
         get { return _target; }
         set {
+            if (!hasRoundStarted) return;
             ReduceTargetDogCount();
             _target = value;
             targetTransform = _target?.transform;
@@ -46,6 +47,9 @@ public class Dog : MonoBehaviour
     private float wanderChance = 0.5f;
     private Vector2 currentWanderingDirection;
 
+    // Round start
+    private bool hasRoundStarted = false;
+
     private void Awake() 
     {
         rb = GetComponent<Rigidbody>();
@@ -60,6 +64,11 @@ public class Dog : MonoBehaviour
         playerHipTransform = playerTransform.Find("Skeleton").Find("Hips");
 
         maxIdleTime += Random.value - 0.5f;
+    }
+
+    private void EnableBehaviour()
+    {
+        hasRoundStarted = true;
     }
 
     private void FocusNewTarget() 
@@ -150,5 +159,15 @@ public class Dog : MonoBehaviour
     private void LateUpdate() 
     {
         leashRenderer.SetPositions(new Vector3[] {leashAttachmentPoint.position, playerHipTransform.position});
+    }
+
+    private void OnEnable()
+    {
+        RoundManager.instance._onRoundStart += EnableBehaviour;
+    }
+
+    private void OnDisable()
+    {
+        RoundManager.instance._onRoundStart -= EnableBehaviour;
     }
 }
