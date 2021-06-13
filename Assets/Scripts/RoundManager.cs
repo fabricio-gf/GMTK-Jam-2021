@@ -129,8 +129,8 @@ public class RoundManager : MonoBehaviour
         else
         {
             instance = this;
-            currentSticksCount.OnValueChange += OnStickCountChange;
-            currentTreatsCount.OnValueChange += OnTreatCountChange;
+            //currentSticksCount.OnValueChange += OnStickCountChange;
+            //currentTreatsCount.OnValueChange += OnTreatCountChange;
         }
         
         //DontDestroyOnLoad(gameObject);
@@ -393,12 +393,12 @@ public class RoundManager : MonoBehaviour
 
     #region GAME METHODS - STICKS AND TREATS
 
-    private void OnTreatCountChange()
+    public void OnTreatCountChange()
     {
         UpdateTreatsText();
     }
 
-    private void OnStickCountChange()
+    public void OnStickCountChange()
     {
         if (currentSticksCount.Value > 0)
         {

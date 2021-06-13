@@ -30921,13 +30921,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 3322d4918d59649418c7ff23308e22c2, type: 3}
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: FadeDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: LoopDuration
-      value: 94.545
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: BlendDuration
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: InitialMusicTrack
       value: 
-      objectReference: {fileID: 8300000, guid: 2171db7fce166114baf6d361790d2c14, type: 3}
+      objectReference: {fileID: 8300000, guid: 3322d4918d59649418c7ff23308e22c2, type: 3}
     - target: {fileID: 2332401095545210223, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: m_Name
       value: '@AudioManager'
@@ -34764,14 +34772,14 @@ MonoBehaviour:
 
     Press WASD to move
 
-    Press F to use treats
+    Press Space to use treats
 
     Hold
-    Space and press left-click to throw a stick
+    right-click and press left-click to throw a stick
 
 
-    Walk the dogs to the end of
-    the park before time runs out
+    Walk the dogs to the
+    end of the park before time runs out
 
 
     Watch out for distractions!'

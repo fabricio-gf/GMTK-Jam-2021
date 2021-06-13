@@ -13,7 +13,9 @@ public class IntVariable : ScriptableObject
         set
         {
             _value = value;
-            OnValueChange?.Invoke();
+            //OnValueChange?.Invoke();
+            RoundManager.instance.OnStickCountChange();
+            RoundManager.instance.OnTreatCountChange();
         }
     }
 }
