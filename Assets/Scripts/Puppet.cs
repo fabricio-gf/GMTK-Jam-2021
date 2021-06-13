@@ -54,7 +54,6 @@ public class Puppet : MonoBehaviour {
         animator.SetBool("moving", true);
         animator.SetInteger("resistance", level);
         if (level == 2) {
-            if (sweat != null) sweat.Play();
             Vector3 buffer = Vector3.zero;
 
             foreach (GameObject dog in RoundManager.instance.dogsList) {
@@ -64,7 +63,6 @@ public class Puppet : MonoBehaviour {
             animator.transform.forward = -buffer.normalized;
         } else {
             animator.transform.forward = this.transform.parent.forward;
-            if (sweat != null) sweat.Stop();
         }
     }
 
@@ -76,14 +74,12 @@ public class Puppet : MonoBehaviour {
             animator.SetBool("moved", true);
             Vector3 buffer = Vector3.zero;
 
-            if (sweat != null) sweat.Play();
             foreach (GameObject dog in RoundManager.instance.dogsList) {
                 buffer += dog.transform.position - this.transform.position;
             }
 
             animator.transform.forward = -buffer.normalized;
         } else {
-            if (sweat != null) sweat.Stop();
             animator.SetBool("moved", false);
             animator.transform.forward = this.transform.parent.forward;
         }
@@ -95,6 +91,16 @@ public class Puppet : MonoBehaviour {
         foreach(GameObject dog in RoundManager.instance.dogsList) {
             StartCoroutine(Dance(dog));
         }
+    }
+
+    public void PlayParticles() {
+        if (sweat == null || sweat.isPlaying) return;
+        sweat.Play();
+    }
+
+    public void StopParticles() {
+        if (sweat == null || !sweat.isPlaying) return;
+        sweat.Stop();
     }
 
 
