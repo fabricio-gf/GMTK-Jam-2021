@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4329f7e307136448004ebf637dc875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Magnitude: 10
+  Magnitude: 7
   m_rigidbody: {fileID: 7302492744016143644}
   m_distraction: {fileID: 7302492744166586082}
   m_collider: {fileID: 4277922196258032990}
@@ -211,6 +211,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1248e145c643ce4499349591aeb8d030, type: 3}
       propertyPath: m_Name
       value: graveto_foda
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1248e145c643ce4499349591aeb8d030, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1248e145c643ce4499349591aeb8d030, type: 3}

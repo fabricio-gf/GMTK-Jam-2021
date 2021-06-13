@@ -9,10 +9,6 @@ class Inventory : MonoBehaviour
     [SerializeField] private uint initTreat = 3;
     [SerializeField] private uint initStick = 0;
 
-    [Header("Prefabs")]
-    [SerializeField] private GameObject treatGO;
-    [SerializeField] private GameObject stickGO;
-
     private Dictionary<PickupType, uint> _pickupQuantity = new Dictionary<PickupType, uint>();
     private Dictionary<PickupType, uint> _maxPickupQuantity = new Dictionary<PickupType, uint>();
 
@@ -38,23 +34,13 @@ class Inventory : MonoBehaviour
         }
     }
 
-    public void UseTreat()
+    public bool hasItem(PickupType type) => _pickupQuantity[type] > 0;
+
+    public void UseItem(PickupType type)
     {
-        if (_pickupQuantity[PickupType.Treat] == 0)
+        if (_pickupQuantity[type] == 0)
             return;
 
-        Instantiate(treatGO, transform);
-
-        _pickupQuantity[PickupType.Treat]--;
-    }
-
-    public void UseStick()
-    {
-        if (_pickupQuantity[PickupType.Stick] == 0)
-            return;
-
-        Instantiate(stickGO, transform).GetComponent<ThrowableStick>().BeginThrow();
-
-        _pickupQuantity[PickupType.Stick]--;
+        _pickupQuantity[type]--;
     }
 }
