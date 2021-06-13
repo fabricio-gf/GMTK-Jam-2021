@@ -11,6 +11,8 @@ namespace StarterAssets
 		public Vector2 move;
 		public Vector2 look;
 		public bool sprint;
+		public bool pressedThrow;
+		public bool pressedTreat;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -25,6 +27,16 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnThrow(InputValue value)
+        {
+			pressedThrow = value.isPressed;
+        }
+
+		public void OnTreat(InputValue value)
+		{
+			pressedTreat = value.isPressed;
+		}
 #endif
 
 		public void MoveInput(Vector2 newMoveDirection)
@@ -35,6 +47,16 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+
+		public void ThrowInput(bool newThrowState)
+		{
+			pressedThrow = newThrowState;
+		}
+
+		public void TreatInput(bool newTreatState)
+		{
+			pressedTreat = newTreatState;
 		}
 	}
 }

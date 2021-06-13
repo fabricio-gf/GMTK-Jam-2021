@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "PlayerInputActionAsset",
     "maps": [
         {
             "name": "Player",
@@ -18,6 +18,22 @@
                     "type": "PassThrough",
                     "id": "980e881e-182c-404c-8cbf-3d09fdb48fef",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Throw",
+                    "type": "PassThrough",
+                    "id": "cb678555-567c-4e50-a377-556b157013f0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Treat",
+                    "type": "Button",
+                    "id": "6a4e9406-75f2-424c-ae07-af4bd0daae43",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -152,6 +168,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71534f6e-4fab-4d4b-99fd-d35feb0498f6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "047b8c6d-48f2-4bdd-b936-3d9704ab6545",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Treat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
