@@ -125,8 +125,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 5
   attractProbability: 1
-  maxDogs: 1
+  maxDogs: 2
   currentDogs: 0
+  followUpFunction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &4277922196258032990
 CapsuleCollider:
   m_ObjectHideFlags: 0
