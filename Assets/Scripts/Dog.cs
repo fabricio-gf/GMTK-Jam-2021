@@ -59,6 +59,8 @@ public class Dog : MonoBehaviour
     private void Awake() 
     {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        
         time = Random.value;
         transform = GetComponent<Transform>();
         leashRenderer = GetComponent<LineRenderer>();
@@ -75,6 +77,7 @@ public class Dog : MonoBehaviour
     private void EnableBehaviour()
     {
         hasRoundStarted = true;
+        rb.isKinematic = false;
     }
 
     private void FocusNewTarget() 
