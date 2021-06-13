@@ -451,9 +451,8 @@ public class RoundManager : MonoBehaviour
         playerRaisingTotalScore = playerRaisingDogsScore = playerRaisingItemScore = playerRaisingTimeScore = 0f;
         
         //score calculations
-        var totalWeight = dogsList.Select(obj => obj.GetComponent<Dog>().size).Aggregate((x, y) => x + y);
-        playerDogsScore = totalWeight * 20;
-        playerItemScore = currentSticksCount.Value * 10 + currentTreatsCount.Value * 10;
+        playerDogsScore = dogsList.Select(obj => obj.GetComponent<Dog>().size).Aggregate((x, y) => x + y);
+        playerItemScore = currentSticksCount.Value * 10 + currentTreatsCount.Value * 20;
         playerTimeScore = (int)(100f * (remainingTime / startingTime));
         playerTotalScore = playerTimeScore + playerDogsScore + playerItemScore;
 
@@ -465,17 +464,17 @@ public class RoundManager : MonoBehaviour
         
         print("Player scores - Dogs: " + playerDogsScore + " - Items: " + playerItemScore + " - Time: " + playerTimeScore + " - Total: " + playerTotalScore);
 
-        if (playerTotalScore <= 50)
+        if (playerTotalScore < 50)
         {
-            punResultText.text = "That's was ruff!";
+            punResultText.text = "THAT WAS RUFF!";
         }
-        else if (playerTotalScore <= 100)
+        else if (playerTotalScore < 100)
         {
-            punResultText.text = "Good boy!";
+            punResultText.text = "GOOD BOY!!";
         }
         else
         {
-            punResultText.text = "Paw-esome!!!";
+            punResultText.text = "PAW-ESOME!!!";
         }
 
         isShowingScores = true;
