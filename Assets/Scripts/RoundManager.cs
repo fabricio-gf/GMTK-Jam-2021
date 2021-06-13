@@ -221,6 +221,13 @@ public class RoundManager : MonoBehaviour
         print("Round Ended :(");
         canCountDown = false;
         
+        //hard coding stuff
+        gameCanvas.transform.Find("GameHUD").gameObject.SetActive(false);
+        foreach (var d in dogsList)
+        {
+            d.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+        
         _onRoundEnd?.Invoke();
         ShowScore();
     }
