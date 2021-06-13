@@ -29,7 +29,7 @@ public class Puppet : MonoBehaviour {
             Vector3 inputDirection = new Vector3(-input.move.x, 0.0f, -input.move.y).normalized;
             float angle = Vector3.Angle(inputDirection, player.velocity.normalized);
 
-            if (angle >= 45f) {
+            if (angle >= 90f) {
                 animator.SetInteger("resistance", 2);
             } else {
                 if (player.velocity.magnitude <= lowSpeed) {
