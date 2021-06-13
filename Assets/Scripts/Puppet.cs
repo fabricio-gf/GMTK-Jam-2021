@@ -1,30 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class Puppet : MonoBehaviour {
 
     Animator animator;
-    [Range(0f, 1f)]
-    public float lowPush = 0.3f, highPush = 0.7f;
+
+    public float lowSpeed = 1f, highSpeed = 3f;
+    [Space(5)]
+
+    public StarterAssetsInputs input;
+    public Rigidbody player;
 
     private void Awake() {
         animator = this.GetComponent<Animator>();
     }
 
-    public void Move(Vector3 input, Vector3 direction) {
-        float angle = Vector3.Angle(input, direction);
-
-        if (angle <= lowPush * 180f) {
-            animator.SetInteger("resistance", 0);
-        } else if (angle >= highPush * 180f) {
-            animator.SetInteger("resistance", 2);
-        } else {
-            animator.SetInteger("resistance", 1);
-        }
+    public void Update() {
+        
     }
 
-    public void Stop() {
-        animator.SetBool("moving", false);
+    private void FixedUpdate() {
+        speed = player.velocity.magnitude;
+
+        if (input.move != Vector2.zero) {
+            animator.SetBool("moving", true);
+            Vector3 inputDirection = new Vector3(-input.move.x, 0.0f, -input.move.y).normalized;
+            angle = Vector3.Angle(inputDirection, player.velocity.normalized);
+
+            if (angle >= 45f) {
+                animator.SetInteger("resistance", 2);
+            } else {
+                if (player.velocity.magnitude <= lowSpeed) {
+                    animator.SetInteger("resistance", 2);
+                } else if (player.velocity.magnitude >= highSpeed ) {
+                    animator.SetInteger("resistance", 0);
+                } else {
+                    animator.SetInteger("resistance", 1);
+                }
+            }
+        } else {
+            animator.SetBool("moving", false);
+        }
+
+
     }
 }
