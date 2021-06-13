@@ -44,7 +44,7 @@ public class RoundManager : MonoBehaviour
     public TextMeshProUGUI itemsScoreText;
 
     //pause
-    private bool isPaused;
+    public bool isPaused = false;
     
     [Header("End screen/score properties")]
     //end screen/scores
@@ -235,10 +235,10 @@ public class RoundManager : MonoBehaviour
     #endregion
 
     #region PAUSE METHODS
-    void TogglePause()
+    public void TogglePause()
     {
         print("Toggled pause: " + !isPaused);
-        if (isPaused)
+        if (!isPaused)
         {
             pauseCanvas.SetActive(true);
             _onPause?.Invoke();

@@ -34,6 +34,8 @@ public class ThrowAbility : MonoBehaviour
     }
     private void BeginThrow()
     {
+        if (RoundManager.instance.isPaused) return;
+        
         if (!_isThrowing && _inventory.hasItem(PickupType.Stick))
         {
             _isThrowing = true;

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,8 @@ public class TreatAbility : MonoBehaviour
 
     private void UseTreat()
     {
+        if (RoundManager.instance.isPaused) return;
+        
         if (_inventory.hasItem(PickupType.Treat))
         {
             Instantiate(prefab, transform);
