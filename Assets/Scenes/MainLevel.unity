@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5985562, g: 0.70364416, b: 0.8574572, a: 1}
+  m_IndirectSpecularColor: {r: 0.59851605, g: 0.7036254, b: 0.8574593, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1922,13 +1922,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1072815187385337037, guid: 16d8690cc79f8974cabb54bc693461be, type: 3}
-      propertyPath: initStick
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: stickQuantity
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a8c5f654362f034d85aaff985c88954, type: 2}
     - target: {fileID: 1072815187385337037, guid: 16d8690cc79f8974cabb54bc693461be, type: 3}
-      propertyPath: initTreat
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: treatQuantity
+      value: 
+      objectReference: {fileID: 11400000, guid: 30b5dc8839f827143a95fde07ca725e8, type: 2}
     - target: {fileID: 1689265458390578938, guid: 16d8690cc79f8974cabb54bc693461be, type: 3}
       propertyPath: m_OcclusionCulling
       value: 0
@@ -7337,6 +7337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ad230dfe929214eb16fe2252f217b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!65 &616805632
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7890,6 +7893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ad230dfe929214eb16fe2252f217b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!65 &666105421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8013,6 +8019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ad230dfe929214eb16fe2252f217b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!65 &669447462
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9490,9 +9499,9 @@ MonoBehaviour:
   timeScoreText: {fileID: 1849490480}
   startingDogsCount: 5
   dogsScoreText: {fileID: 292018390}
-  startingTreatsCount: 2
+  currentTreatsCount: {fileID: 11400000, guid: 30b5dc8839f827143a95fde07ca725e8, type: 2}
   treatsCountText: {fileID: 409970955}
-  startingSticksCount: 0
+  currentSticksCount: {fileID: 11400000, guid: 7a8c5f654362f034d85aaff985c88954, type: 2}
   stickIcon: {fileID: 1354410726}
   stickIconInner: {fileID: 929853325}
   colorUsable: {r: 1, g: 1, b: 1, a: 1}
@@ -25961,6 +25970,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ad230dfe929214eb16fe2252f217b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!65 &2004064382
 BoxCollider:
   m_ObjectHideFlags: 0

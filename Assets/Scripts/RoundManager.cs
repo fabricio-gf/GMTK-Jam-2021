@@ -31,12 +31,10 @@ public class RoundManager : MonoBehaviour
 
     [Header("Items properties")]
     //treats and snacks
-    public int startingTreatsCount;
-    private int currentTreatsCount;
+    [SerializeField] private IntVariable currentTreatsCount;
     public TextMeshProUGUI treatsCountText;
     [Space(5)]
-    public int startingSticksCount;
-    private int currentSticksCount;
+    [SerializeField] private IntVariable currentSticksCount;
     [Space(5)]
     public Image stickIcon;
     public Image stickIconInner;
@@ -78,7 +76,9 @@ public class RoundManager : MonoBehaviour
     public CinemachineVirtualCamera frontCamera;
     public List<Transform> possibleDogsPositions;
     public GameObject[] dogPrefabs;
-    public List<GameObject> dogsList;
+
+    private List<GameObject> dogsList = new List<GameObject>();
+    
 
     //DELEGATES
     public delegate void OnRoundStart();
@@ -102,6 +102,8 @@ public class RoundManager : MonoBehaviour
         else
         {
             instance = this;
+            currentSticksCount.OnValueChange += OnStickCountChange;
+            currentTreatsCount.OnValueChange += OnTreatCountChange;
         }
         
         DontDestroyOnLoad(gameObject);
@@ -138,8 +140,6 @@ public class RoundManager : MonoBehaviour
         endScreen.SetActive(false);
 
         currentDogsCount = startingDogsCount;
-        currentSticksCount = startingSticksCount;
-        currentTreatsCount = startingTreatsCount;
         
         remainingTime = startingTime;
         canCountDown = true;
@@ -156,7 +156,6 @@ public class RoundManager : MonoBehaviour
             print("SPAWNING DOGGO");
             var newDog = Instantiate(dogPrefabs[Random.Range(0,dogPrefabs.Length)], pos.transform.position, Quaternion.identity, null);
             newDog.GetComponent<SpringJoint>().connectedBody = player.GetComponentInChildren<Rigidbody>();
-            //TODO RANDOMIZE SIZES AND COLORS
             dogsList.Add(newDog);
         }
     }
@@ -209,47 +208,29 @@ public class RoundManager : MonoBehaviour
     #endregion
 
     #region GAME METHODS - STICKS AND TREATS
-    public void PickupStick()
+
+    private void OnTreatCountChange()
     {
-        print("Got a stick!");
-        
-        currentSticksCount++;
-        stickIcon.color = colorUsable;
-        stickIconInner.color = colorUsable;
+        UpdateTreatsText();
     }
 
-    public void UseStick()
+    private void OnStickCountChange()
     {
-        print("Using a stick!");
-        if (currentSticksCount > 0)
+        if (currentSticksCount.Value > 0)
         {
-            currentSticksCount--;
+            stickIcon.color = colorUsable;
+            stickIconInner.color = colorUsable;
+        }
+        else
+        {
             stickIcon.color = colorUnusable;
             stickIconInner.color = colorUnusable;
-        }
-        else
-        {
-            print("ERROR: No more sticks!");
-        }
-    }
-
-    public void UseTreat()
-    {
-        print("Using a treat!");
-        if (currentTreatsCount > 0)
-        {
-            currentTreatsCount--;
-            UpdateTreatsText();
-        }
-        else
-        {
-            print("ERROR: No more treats!");
         }
     }
 
     public void UpdateTreatsText()
     {
-        treatsCountText.text = currentTreatsCount.ToString();
+        treatsCountText.text = currentTreatsCount.Value.ToString();
     }
     #endregion
 
@@ -286,7 +267,7 @@ public class RoundManager : MonoBehaviour
         
         //score calculations
         playerDogsScore = currentDogsCount * 20;
-        playerItemScore = currentSticksCount * 10 + currentTreatsCount * 10;
+        playerItemScore = currentSticksCount.Value * 10 + currentTreatsCount.Value * 10;
         playerTimeScore = (int)(100f * (remainingTime / startingTime));
         playerTotalScore = playerTimeScore + playerDogsScore + playerItemScore;
 

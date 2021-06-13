@@ -1,17 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
-
+    [SerializeField] private LayerMask killMask;
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        print("Collided with " + other.gameObject);
-        Destroy(other.gameObject);
+        if((killMask & (int)Mathf.Pow(2, other.gameObject.layer)) != 0)
+        {
+            print("Collided with " + other.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()
