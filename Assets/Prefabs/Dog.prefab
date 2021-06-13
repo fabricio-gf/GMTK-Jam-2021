@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 4680638020111893149}
   - component: {fileID: 4698189006704860433}
   - component: {fileID: 7027186633985426456}
+  - component: {fileID: 2624056850334082811}
   m_Layer: 9
   m_Name: Dog
   m_TagString: Untagged
@@ -288,6 +289,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!111 &2624056850334082811
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4680638020111893089}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 78b909280d291da4887198d25e18fe3f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 78b909280d291da4887198d25e18fe3f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6195723521791440757
 GameObject:
   m_ObjectHideFlags: 0

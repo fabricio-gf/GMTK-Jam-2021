@@ -86,7 +86,8 @@ public class RoundManager : MonoBehaviour
     public List<Transform> possibleDogsPositions;
     public GameObject[] dogPrefabs;
 
-    private List<GameObject> dogsList = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> dogsList = new List<GameObject>();
 
     public Animator playerAnimator;
     
