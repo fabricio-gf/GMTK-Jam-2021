@@ -7,10 +7,12 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject mainMenuCanvas;
-
+    public AudioClip gameMusic;
+    
     public void StartRound()
     {
         RoundManager.instance.StartRound();
+        AudioManager.instance.GetComponent<MusicController>().ChangeTrackInstantly(gameMusic, 138.182f);
         mainMenuCanvas.SetActive(false);
     }
 
