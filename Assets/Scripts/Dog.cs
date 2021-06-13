@@ -66,7 +66,7 @@ public class Dog : MonoBehaviour
     private void Start() 
     {
         playerTransform = GetComponent<SpringJoint>().connectedBody.transform;
-        playerHipTransform = playerTransform.Find("Skeleton").Find("Hips");
+        playerHipTransform = playerTransform.Find("Art").Find("LeashAhchor");
 
         maxIdleTime += Random.value - 0.5f;
     }
