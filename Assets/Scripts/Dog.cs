@@ -21,6 +21,11 @@ public class Dog : MonoBehaviour {
     public float distractionForce;
     public float flatAnimTimeMultiplier = 2.5f;
 
+    [Header("Particles")]
+    public ParticleSystem noticeParticle;
+    public ParticleSystem runParticle;
+    public ParticleSystem walkParticle;
+
     private Rigidbody rb;
     private Transform playerTransform;
     private Transform playerHipTransform;
@@ -56,6 +61,7 @@ public class Dog : MonoBehaviour {
             // TODO idle movement
         } else {
             Target.currentDogs++;
+            noticeParticle?.Play();
         }
     }
 
@@ -90,6 +96,14 @@ public class Dog : MonoBehaviour {
         var lookDir = lookTarget.position - transform.position;
         var rot = Mathf.Atan2(lookDir.x, lookDir.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, rot, 0);
+
+        //Particle
+        if(Mathf.Repeat(time, 1) < 0.01f)
+        {
+            if(Target != null)
+                runParticle.Play();
+            walkParticle.Play();
+        }
     }
 
     private void LateUpdate() {
