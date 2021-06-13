@@ -18,7 +18,7 @@ public class ThrowAbility : MonoBehaviour
         {
             Vector2 pos = Mouse.current.position.ReadValue();
             pos = new Vector2((pos.x / Screen.width) - 0.5f, (pos.y / Screen.height) - 0.5f);
-            return pos;
+            return -pos;
         }
     }
 
@@ -59,15 +59,13 @@ public class ThrowAbility : MonoBehaviour
 
         Vector2 direction2D = MouseDirection;
         Vector3 throwDirection = (new Vector3(direction2D.x, 0f, direction2D.y).normalized + Vector3.up).normalized;
-        lineRenderer.SetPosition(1, throwDirection * arrowLength);
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position + (throwDirection * arrowLength));
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             _isThrowing = false;
 
-            // For some reason it is inverted
-            
-            throwDirection = new Vector3(-throwDirection.x, throwDirection.y, -throwDirection.z);
             Throw(throwDirection);
 
             _inventory.UseItem(PickupType.Stick);
