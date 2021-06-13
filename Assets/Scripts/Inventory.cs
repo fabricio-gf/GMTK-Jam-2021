@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 class Inventory : MonoBehaviour
@@ -9,52 +10,67 @@ class Inventory : MonoBehaviour
     [SerializeField] private uint initTreat = 3;
     [SerializeField] private uint initStick = 0;
 
-    [Header("Prefabs")]
-    [SerializeField] private GameObject treatGO;
-    [SerializeField] private GameObject stickGO;
+    [Header("Items SO")]
+    [SerializeField] private IntVariable stickQuantity;
+    [SerializeField] private IntVariable treatQuantity;
 
-    private Dictionary<PickupType, uint> _pickupQuantity = new Dictionary<PickupType, uint>();
-    private Dictionary<PickupType, uint> _maxPickupQuantity = new Dictionary<PickupType, uint>();
+    private Dictionary<PickupType, int> _maxPickupQuantity = new Dictionary<PickupType, int>();
 
     private void Start()
     {
-        _maxPickupQuantity[PickupType.Treat] = maxTreat;
-        _maxPickupQuantity[PickupType.Stick] = maxStick;
+        _maxPickupQuantity[PickupType.Treat] = (int)maxTreat;
+        _maxPickupQuantity[PickupType.Stick] = (int)maxStick;
 
-        _pickupQuantity[PickupType.Treat] = initTreat;
-        _pickupQuantity[PickupType.Stick] = initStick;
+        treatQuantity.Value = (int)initTreat;
+        stickQuantity.Value = (int)initStick;
     }
 
     public bool Add(PickupType item)
     {
-        if(_pickupQuantity[item] == _maxPickupQuantity[item])
+        switch (item)
         {
-            return false;
+            case PickupType.Treat:
+                if (treatQuantity.Value >= _maxPickupQuantity[PickupType.Treat])
+                    return false;
+                else
+                {
+                    treatQuantity.Value++;
+                    return true;
+                }
+            case PickupType.Stick:
+                if(stickQuantity.Value >= _maxPickupQuantity[PickupType.Stick])
+                    return false;
+                else
+                {
+                    stickQuantity.Value++;
+                    return true;
+                }
         }
-        else
-        {
-            _pickupQuantity[item] = _pickupQuantity[item] + 1;
-            return true;
-        }
+        return false;
     }
 
-    public void UseTreat()
+    public bool hasItem(PickupType type) 
     {
-        if (_pickupQuantity[PickupType.Treat] == 0)
-            return;
-
-        Instantiate(treatGO, transform);
-
-        _pickupQuantity[PickupType.Treat]--;
+        if (type == PickupType.Stick)
+            return stickQuantity.Value > 0;
+        else if (type == PickupType.Treat)
+            return treatQuantity.Value > 0;
+        return false;
     }
 
-    public void UseStick()
+    public void UseItem(PickupType type)
     {
-        if (_pickupQuantity[PickupType.Stick] == 0)
-            return;
-
-        Instantiate(stickGO, transform).GetComponent<ThrowableStick>().BeginThrow();
-
-        _pickupQuantity[PickupType.Stick]--;
+        if (type == PickupType.Stick)
+        {
+            if (stickQuantity.Value <= 0)
+                return;
+            stickQuantity.Value--;
+        }
+        else if (type == PickupType.Treat)
+        {
+            if (treatQuantity.Value <= 0)
+                return;
+            treatQuantity.Value--;
+        }
     }
 }
