@@ -52,6 +52,19 @@ namespace StarterAssets
 			{
 				_mainCamera = Camera.main.gameObject;
 			}
+
+			RoundManager.instance._onRoundStart += ActivatePlayerInput;
+			RoundManager.instance._onRoundEnd += DeactivatePlayerInput;
+		}
+
+		public void ActivatePlayerInput()
+		{
+			GetComponent<PlayerInput>().enabled = true;
+		}
+
+		public void DeactivatePlayerInput()
+		{
+			GetComponent<PlayerInput>().enabled = false;
 		}
 
 		private void Start()

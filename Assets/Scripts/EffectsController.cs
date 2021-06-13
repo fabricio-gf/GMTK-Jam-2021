@@ -38,7 +38,7 @@ public class EffectsController : MonoBehaviour
             GameObject obj = Instantiate(SourcePrefab, new Vector3(0, 0, -10), Quaternion.identity);
             Source = obj.GetComponent<AudioSource>();
 
-            DontDestroyOnLoad(obj);
+            //DontDestroyOnLoad(obj);
 
         }
 

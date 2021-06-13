@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public class Distraction : MonoBehaviour
@@ -16,6 +17,8 @@ public class Distraction : MonoBehaviour
     public int maxDogs = 0;
 
     public int currentDogs = 0;
+
+    public UnityEvent followUpFunction;
 
     private void OnTriggerEnter(Collider other) {
         var newDog = other.GetComponent<Dog>();
@@ -42,7 +45,9 @@ public class Distraction : MonoBehaviour
         }
 
         // This should replace previous distraction, if any
+        print(gameObject.name + " - ATTRACT DOGGO");
         newDog.Target = this;
+        followUpFunction?.Invoke();
     }
 
     private void OnTriggerExit(Collider other) {

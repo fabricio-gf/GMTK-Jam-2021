@@ -42,7 +42,7 @@ public class MusicController : MonoBehaviour
             Source1 = obj.GetChild(0).GetComponent<AudioSource>();
             Source2 = obj.GetChild(1).GetComponent<AudioSource>();
 
-            DontDestroyOnLoad(obj);
+            //DontDestroyOnLoad(obj);
         }
 
         Source1.clip = InitialMusicTrack;

@@ -182,7 +182,7 @@
                 {
                     "name": "",
                     "id": "71534f6e-4fab-4d4b-99fd-d35feb0498f6",
-                    "path": "<Keyboard>/space",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -193,7 +193,7 @@
                 {
                     "name": "",
                     "id": "047b8c6d-48f2-4bdd-b936-3d9704ab6545",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",

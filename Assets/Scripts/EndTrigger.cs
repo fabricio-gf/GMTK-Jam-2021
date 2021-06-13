@@ -11,7 +11,7 @@ public class EndTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             print("Collide with player");
-            RoundManager.instance.RoundEndTest();
+            RoundManager.instance.RoundEndVictory();
         }
     }
 }

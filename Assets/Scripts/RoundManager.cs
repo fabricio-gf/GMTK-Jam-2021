@@ -82,10 +82,13 @@ public class RoundManager : MonoBehaviour
     public GameObject player;
     public Transform playerInitialPosition;
     public CinemachineVirtualCamera frontCamera;
+    public CinemachineVirtualCamera endCamera;
     public List<Transform> possibleDogsPositions;
     public GameObject[] dogPrefabs;
 
     private List<GameObject> dogsList = new List<GameObject>();
+
+    public Animator playerAnimator;
     
 
     //DELEGATES
@@ -113,8 +116,6 @@ public class RoundManager : MonoBehaviour
             currentSticksCount.OnValueChange += OnStickCountChange;
             currentTreatsCount.OnValueChange += OnTreatCountChange;
         }
-        
-        DontDestroyOnLoad(gameObject);
     }
 
     #region ROUND METHODS - ROUND START, SPAWN DOGS, UPDATE, ROUND END
@@ -172,12 +173,15 @@ public class RoundManager : MonoBehaviour
     {
         if (canCountDown)
         {
+            remainingTime -= Time.deltaTime;
             if (remainingTime <= 0)
             {
-                RoundEnd();
+                RoundEndDefeat();
             }
-            remainingTime -= Time.deltaTime;
-            UpdateTimer();
+            else
+            {
+                UpdateTimer();
+            }
         }
 
         if (isShowingScores)
@@ -211,17 +215,30 @@ public class RoundManager : MonoBehaviour
         
         timeText.text = $"{minutes:00}:{seconds:00}";
     }
-    
-    public void RoundEndTest()
+
+    void RoundEndDefeat()
     {
-        print("Calling RoundEnd! (this is a test)");
-        RoundEnd();
+        print("Round Ended :(");
+        canCountDown = false;
+        
+        _onRoundEnd?.Invoke();
+        ShowScore();
     }
 
-    void RoundEnd()
+    public void RoundEndVictory()
     {
         print("Round Ended!");
         canCountDown = false;
+        
+        //hard coding stuff
+        gameCanvas.transform.Find("GameHUD").gameObject.SetActive(false);
+        playerAnimator.SetTrigger("dance");
+        foreach (var d in dogsList)
+        {
+            d.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+        endCamera.Priority = 11;
+        
         _onRoundEnd?.Invoke();
         ShowScore();
     }

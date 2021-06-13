@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/RoundLogic.unity
-    guid: ee12e37b02b69d7489cfaddee6cd86f0
-  - enabled: 1
     path: Assets/Scenes/MainLevel.unity
     guid: c2567154dc7f3c445bd6af0d51053e40
   m_configObjects:
