@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class ThrowAbility : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private float arrowLength = 1f;
 
     private bool _isThrowing = false;
     private Inventory _inventory = null;
@@ -16,7 +18,7 @@ public class ThrowAbility : MonoBehaviour
         {
             Vector2 pos = Mouse.current.position.ReadValue();
             pos = new Vector2((pos.x / Screen.width) - 0.5f, (pos.y / Screen.height) - 0.5f);
-            return pos;
+            return -pos;
         }
     }
 
@@ -50,16 +52,23 @@ public class ThrowAbility : MonoBehaviour
     private void Update()
     {
         if (!_isThrowing)
+        {
+            lineRenderer.enabled = false;
             return;
+        }
         
+        lineRenderer.enabled = true;
+
+        Vector2 direction2D = MouseDirection;
+        Vector3 throwDirection = (new Vector3(direction2D.x, 0f, direction2D.y).normalized + Vector3.up).normalized;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position + (throwDirection * arrowLength));
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             _isThrowing = false;
 
-            Vector2 direction2D = -MouseDirection;
-            Vector3 throwDirection = new Vector3(direction2D.x, 0f, direction2D.y).normalized + Vector3.up;
-
-            Throw(throwDirection.normalized);
+            Throw(throwDirection);
 
             _inventory.UseItem(PickupType.Stick);
         }
