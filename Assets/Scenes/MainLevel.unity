@@ -1922,9 +1922,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1072815187385337037, guid: 16d8690cc79f8974cabb54bc693461be, type: 3}
-      propertyPath: initStick
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: stickQuantity
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a8c5f654362f034d85aaff985c88954, type: 2}
+    - target: {fileID: 1072815187385337037, guid: 16d8690cc79f8974cabb54bc693461be, type: 3}
+      propertyPath: treatQuantity
+      value: 
+      objectReference: {fileID: 11400000, guid: 30b5dc8839f827143a95fde07ca725e8, type: 2}
     - target: {fileID: 1689265458390578938, guid: 16d8690cc79f8974cabb54bc693461be, type: 3}
       propertyPath: m_OcclusionCulling
       value: 0
@@ -9495,9 +9499,9 @@ MonoBehaviour:
   timeScoreText: {fileID: 1849490480}
   startingDogsCount: 5
   dogsScoreText: {fileID: 292018390}
-  startingTreatsCount: 2
+  currentTreatsCount: {fileID: 11400000, guid: 30b5dc8839f827143a95fde07ca725e8, type: 2}
   treatsCountText: {fileID: 409970955}
-  startingSticksCount: 0
+  currentSticksCount: {fileID: 11400000, guid: 7a8c5f654362f034d85aaff985c88954, type: 2}
   stickIcon: {fileID: 1354410726}
   stickIconInner: {fileID: 929853325}
   colorUsable: {r: 1, g: 1, b: 1, a: 1}
