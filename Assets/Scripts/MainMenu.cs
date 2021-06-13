@@ -13,14 +13,4 @@ public class MainMenu : MonoBehaviour
         RoundManager.instance.StartRound();
         mainMenuCanvas.SetActive(false);
     }
-
-    public void ToggleCredits()
-    {
-        
-    }
-
-    public void ToggleInstructions()
-    {
-        
-    }
 }
