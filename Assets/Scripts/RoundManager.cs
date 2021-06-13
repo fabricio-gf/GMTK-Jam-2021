@@ -15,6 +15,14 @@ public class RoundManager : MonoBehaviour
 {
     public static RoundManager instance;
     
+    public enum Dificulty
+    {
+        Mixed = 0,
+        Small,
+        Medium,
+        Big,
+    }
+
     //PROPERTIES
     //time
     [Header("Time properties")]
@@ -27,8 +35,16 @@ public class RoundManager : MonoBehaviour
     [Header("Dog properties")]
     //dogs count
     [SerializeField] private int startingDogsCount;
-    private int currentDogsCount;
+    private int currentDogsCount
+    {
+        get => dogsList.Count;
+    }
     public TextMeshProUGUI dogsScoreText;
+
+    [Header("Dificulty options")]
+    protected Dificulty currentDificulty = Dificulty.Mixed;
+    public TMP_Dropdown dificultyDropdown;
+    public Slider dogCountSlider;
 
     [Header("Items properties")]
     //treats and snacks
@@ -115,6 +131,7 @@ public class RoundManager : MonoBehaviour
         }
         
         DontDestroyOnLoad(gameObject);
+        GetFromSave();
     }
 
     #region ROUND METHODS - ROUND START, SPAWN DOGS, UPDATE, ROUND END
@@ -132,12 +149,7 @@ public class RoundManager : MonoBehaviour
         
         if (isReplaying)
         {
-            foreach (var d in dogsList)
-            {
-                Destroy(d);
-            }
-            dogsList.Clear();
-            SpawnDogs();
+            SpawnDogs(true);
             isReplaying = false;
         }
         else
@@ -147,22 +159,67 @@ public class RoundManager : MonoBehaviour
 
         endScreen.SetActive(false);
 
-        currentDogsCount = startingDogsCount;
-        
         remainingTime = startingTime;
         canCountDown = true;
         
         gameCanvas.SetActive(true);
         _onRoundStart?.Invoke();
+        SaveSettings();
     }
 
-    private void SpawnDogs()
+    private void ClearDogs()
     {
-        var usableDogsPositions = possibleDogsPositions.OrderBy(x => Random.value).Take(5);
+        foreach (var d in dogsList)
+        {
+            Destroy(d);
+        }
+        dogsList.Clear();
+    }
+
+    private void RemoveDogAmount(int dogsToKeep)
+    {
+        int toRemove = (dogsToKeep >= 0)? dogsToKeep : 0;
+        while(toRemove > 0 && dogsList.Count > 0)
+        {
+            Destroy(dogsList[dogsList.Count - 1]);
+            dogsList.RemoveAt(dogsList.Count-1);
+        }
+    }
+
+    private void SpawnDogs(bool clearAll = true)
+    {
+        if(clearAll)
+            ClearDogs();
+        else
+            RemoveDogAmount(currentDogsCount - startingDogsCount);
+        
+        int toSpawn = startingDogsCount - currentDogsCount;
+        for (int i = 0; i < toSpawn; i++)
+        {
+            SpawnDog();
+        }
+    }
+
+    private void SpawnDog()
+    {
+        var usableDogsPositions = possibleDogsPositions.OrderBy(x => Random.value).Take(1);
         foreach (var pos in usableDogsPositions)
         {
             print("SPAWNING DOGGO");
-            var newDog = Instantiate(dogPrefabs[Random.Range(0,dogPrefabs.Length)], pos.transform.position, Quaternion.identity, null);
+            int spawnId = Random.Range(0,dogPrefabs.Length);
+            switch(currentDificulty)
+            {
+                case Dificulty.Small:
+                    spawnId = 0;
+                    break;
+                case Dificulty.Medium:
+                    spawnId = 1;
+                    break;
+                case Dificulty.Big:
+                    spawnId = 2;
+                    break;
+            }
+            var newDog = Instantiate(dogPrefabs[spawnId], pos.transform.position, Quaternion.identity, null);
             newDog.GetComponent<SpringJoint>().connectedBody = player.GetComponentInChildren<Rigidbody>();
             dogsList.Add(newDog);
         }
@@ -245,6 +302,67 @@ public class RoundManager : MonoBehaviour
     {
         isShowingTotalScore = true;
     }
+    #endregion
+
+    #region DIFICULTY METHODS - CHANGING AMOUNT OF INITIAL DOGS
+
+    const string dificultySaveString = "Dificulty";
+    const string countSaveString = "DogCount";
+    protected void GetFromSave()
+    {
+        currentDificulty = Dificulty.Mixed;
+        if(PlayerPrefs.HasKey(dificultySaveString))
+        {
+            currentDificulty = (Dificulty) PlayerPrefs.GetInt(dificultySaveString);
+        }
+        startingDogsCount = PlayerPrefs.GetInt(countSaveString, 5);
+
+        //Update UI
+        dogCountSlider.value = startingDogsCount;
+        dificultyDropdown.value = (int) currentDificulty;
+    }
+
+    protected void SaveSettings()
+    {
+        PlayerPrefs.SetInt(dificultySaveString, (int) currentDificulty);
+        PlayerPrefs.SetInt(countSaveString, startingDogsCount);
+    }
+
+    public void SetDificulty(int id)
+    {
+        try
+        {
+            SetDificulty((Dificulty) id);
+        }
+        catch(Exception e)
+        {}
+    }
+
+    public void SetDificulty(Dificulty dificulty)
+    {
+        if(currentDificulty != dificulty )
+        {
+            currentDificulty = dificulty;
+            SpawnDogs(true);            
+        }
+    }
+
+    public void SetDogCount(float dogCount)
+    {
+        SetDogCount(Mathf.RoundToInt(dogCount));
+    }
+    public void SetDogCount(int dogCount)
+    {
+        if(dogCount != startingDogsCount)
+        {
+            startingDogsCount = dogCount;
+            if(startingDogsCount < 1)
+                startingDogsCount = 1;
+            
+            SpawnDogs(false);
+        }
+    }
+
     #endregion
 
     #region GAME METHODS - STICKS AND TREATS
