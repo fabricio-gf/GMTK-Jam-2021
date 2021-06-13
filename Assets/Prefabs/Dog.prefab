@@ -84,8 +84,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leashAttachmentPoint: {fileID: 3420803026729832223}
-  distractionForce: 200
+  distractionForce: 100
   flatAnimTimeMultiplier: 2.5
+  size: 0
   noticeParticle: {fileID: 6071915372624792951}
   runParticle: {fileID: 2460486629551212890}
   walkParticle: {fileID: 5578979412014575073}

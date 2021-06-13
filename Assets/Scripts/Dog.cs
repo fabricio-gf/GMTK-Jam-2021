@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Dog : MonoBehaviour 
+public class Dog : MonoBehaviour
 {
     // TODO possibly use a priority queue to allow backup distractions
     private Distraction _target;
@@ -21,6 +21,7 @@ public class Dog : MonoBehaviour
 
     public float distractionForce;
     public float flatAnimTimeMultiplier = 2.5f;
+    public int size;
 
     [Header("Particles")]
     public ParticleSystem noticeParticle;
@@ -109,7 +110,7 @@ public class Dog : MonoBehaviour
     {
         if (Target != null) 
         {
-            rb.AddForce(transform.forward * (Target.weight * distractionForce), ForceMode.Force);
+            rb.AddForce(transform.forward * (Target.weight * distractionForce * size), ForceMode.Force);
         }
         else
         {

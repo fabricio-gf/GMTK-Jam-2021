@@ -451,7 +451,8 @@ public class RoundManager : MonoBehaviour
         playerRaisingTotalScore = playerRaisingDogsScore = playerRaisingItemScore = playerRaisingTimeScore = 0f;
         
         //score calculations
-        playerDogsScore = currentDogsCount * 20;
+        var totalWeight = dogsList.Select(obj => obj.GetComponent<Dog>().size).Aggregate((x, y) => x + y);
+        playerDogsScore = totalWeight * 20;
         playerItemScore = currentSticksCount.Value * 10 + currentTreatsCount.Value * 10;
         playerTimeScore = (int)(100f * (remainingTime / startingTime));
         playerTotalScore = playerTimeScore + playerDogsScore + playerItemScore;
